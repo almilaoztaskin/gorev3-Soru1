@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru1</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>1'den 99'a kadar olan sayıları for döngüsü ile yan yana <button onclick="sırala()">Sırala</button></p>
+    <br>
+
+    <button onclick="sec()" disabled>Rastgele Sayı Seç</button>
+
+    <p id="output"></p>
+
+    <script>
+
+        var selectedNumbers = [];
+
+        function sırala() {
+            var output = document.getElementById("output");
+            output.innerHTML = "";
+
+            for (let i = 1; i <= 99; i++) {
+                output.innerHTML += '<span>' + i + '</span>';
+                if (i % 10 === 0) {
+                    output.innerHTML += '<br><br> ';
+                }
+            }
+
+            document.getElementsByTagName("button")[0].disabled = true;
+            document.getElementsByTagName("button")[1].disabled = false;
+        };
+
+        function sec() {
+
+            var randomNumber;
+            do {
+                randomNumber = Math.floor(Math.random() * 99) + 1; // 1 ile 99 arasında rastgele bir sayı seç
+            } while (selectedNumbers.includes(randomNumber));
+
+            var selectedSpan = document.querySelector("#output span:nth-of-type(" + randomNumber + ")");
+            selectedSpan.style.color = "red";
+            selectedSpan.style.fontWeight = "bold";
+
+            selectedNumbers.push(randomNumber)
+        }
+    </script>
+</body>
+
+</html>
